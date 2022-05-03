@@ -76,17 +76,12 @@ img {
 @media screen and (max-width: 880px) {
   .topnav {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
   }
-
-  .main-navbar {
-    margin-top: 1rem;
+  .topnav.responsive {
+    align-items: flex-start;
   }
-}
-
-@media screen and (max-width: 768px) {
 
   .main-navbar {
 
@@ -104,16 +99,11 @@ img {
     color: #ff0000;
   }
 
-  .topnav.responsive {
-    position: relative;
-  }
+  
 
   .topnav.responsive .icon {
-    /* position: absolute;
-    right: 0;
-    top: 0; */
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     color: #000000;
   }
 
