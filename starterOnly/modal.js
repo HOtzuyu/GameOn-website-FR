@@ -9,21 +9,15 @@ let contactForm = document.querySelector('#contactForm');
 
 
 // set locations
-let location1 = document.querySelector('#location1');
-let location2 = document.querySelector('#location2');
-let location3 = document.querySelector('#location3');
-let location4 = document.querySelector('#location4');
-let location5 = document.querySelector('#location5');
-let location6 = document.querySelector('#location6');
+let radioLocation = document.querySelectorAll('input[name="location"]');
 
 // Checkbox
 let Checkbox1 = document.querySelector('#checkbox1');
 let checkbox2 = document.querySelector('#checkbox2');
-
 let validate = document.querySelector('.button');
 
-// create  a div for error message
-
+let listError = ['Veuillez entrer 2 caractères ou plus pour le champ du nom.', 'Veuillez entrer 2 caractères ou plus pour le champ du prènom.', 'Veuillez entrer un adresse mail valide.', 'Vous devez choisir une valeur numérique compris entre 0 et 99.'];
+let listRegex = ['^[a-zA-Z]{2,}','^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$','^[0-9]{1,2}$'];
 
 
 
@@ -34,16 +28,19 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 closer.addEventListener('click', closeModal);
 
 
-// #2.1check monitor first _ listen when the value is change
-contactForm.first.addEventListener('change', function () {
-  validFirst(this)
+// #2.1check monitor first _ listen when the value is input
+contactForm.first.addEventListener('input', function () {
+  validFirst(this);
+  if (validFirst(this) != 0) {
+    contactForm.first.target.parentElement('data-error-visible', 'true');
+  }
 });
-// #2.2check monitor last _ listen when the value is change
-contactForm.last.addEventListener('change', function () {
+// #2.2check monitor last _ listen when the value is input
+contactForm.last.addEventListener('input', function () {
   validLast(this)
 });
-// #2.3check monitor email _ listen when the value is change
-contactForm.email.addEventListener('change', function () {
+// #2.3check monitor email _ listen when the value is input
+contactForm.email.addEventListener('input', function () {
   validMail(this)
 });
 // #2.4check birthdate
@@ -51,7 +48,7 @@ contactForm.birthdate.addEventListener('input', function () {
   validDate(this)
 })
 // #2.5check Quantity of tornament
-contactForm.quantity.addEventListener('change', function(){
+contactForm.quantity.addEventListener('input', function () {
   validQuantity(this)
 })
 
@@ -69,11 +66,9 @@ function editNav() {
 
 
 
-
-
 // launch modal form
 function launchModal() {
-  modalbg.style.display = "block";
+  modalbg.style.display = "flex";
 }
 
 // #1 set close modal form
@@ -84,16 +79,19 @@ function closeModal() {
 // #2.1 monitor First
 const validFirst = function (inputValue) {
 
-  let regex = new RegExp('^[a-zA-Z]{2,}', 'g');
+  let regex = new RegExp(listRegex[0], 'g');
 
   let testRegex = regex.test(inputValue.value);
   let small = inputValue.nextElementSibling;
- 
+
   if (testRegex) {
     small.innerHTML = '';
+
   } else {
-    small.innerHTML = 'Veuillez entrer 2 caractères ou plus pour le champ du nom.';
+    small.innerHTML = listError[0];
+    inputValue.parentElement.setAttribute('data-error-visible', 'true');
   }
+  return testRegex;
 }
 // #2.2 monitor Last
 const validLast = function (inputValue) {
@@ -106,14 +104,15 @@ const validLast = function (inputValue) {
     small.innerHTML = '';
   } else {
     small.innerHTML = 'Veuillez entrer 2 caractères ou plus pour le champ du prènom.';
+    contactForm.last.parentElement.setAttribute('data-error-visible', 'true');
   }
 }
 // #2.3 monitor email
 const validMail = function (inputValue) {
   // Set RegExp for email
   let regex = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
-
   let testRegex = regex.test(inputValue.value);
+
   let small = inputValue.nextElementSibling;
 
   if (testRegex) {
@@ -143,15 +142,22 @@ const validDate = function (inputValue) {
     small.innerHTML = 'Les dinosaures ne sont pas accepté.'
   } else {
     small.innerHTML = '';
-    return true
-  };
 
+  };
+  return //a check;
 }
 // #2.5check Quantity of tornament
 const validQuantity = function (inputValue) {
   let small = inputValue.nextElementSibling;
-  
-  
+
+  let regex = new RegExp('^[0-9]{1,2}$', 'g');
+  let testRegex = regex.test(inputValue.value);
+
+  if (testRegex) {
+    small.innerHTML = '';
+  } else {
+    small.innerHTML = 'Vous devez choisir une valeur numérique compris entre 0 et 99.';
+  }
 }
 
 

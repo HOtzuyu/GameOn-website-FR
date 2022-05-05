@@ -79,6 +79,7 @@ img {
     justify-content: space-between;
     align-items: center;
   }
+
   .topnav.responsive {
     align-items: flex-start;
   }
@@ -99,7 +100,7 @@ img {
     color: #ff0000;
   }
 
-  
+
 
   .topnav.responsive .icon {
     display: flex;
@@ -258,13 +259,19 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-
-
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
+.formData[data-error-visible="true"] small {
+  font-size: 0.4em;
+  color: red;
 }
+/* 
+input[data-error]::after {
+  content: attr(data-error);
+  font-size: 0.4em;
+  color: red;
+} */
+
+
+
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -454,19 +461,20 @@ input[data-error]::after {
 }
 
 .hero-section {
-  min-height: 93vh;
+  height: 65vh;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   overflow: hidden;
   box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
+  background-color: #232323;
 }
 
 .hero-content {
   padding: 51px 67px;
   grid-column: span 4;
-  background: #232323;
+  /* background: #232323; */
   color: #fff;
   position: relative;
   text-align: left;
@@ -512,10 +520,12 @@ input[data-error]::after {
 
 .hero-img {
   grid-column: span 8;
+  display: flex;
+  justify-content: end;
 }
 
 .hero-img img {
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   display: block;
   padding: 0;
