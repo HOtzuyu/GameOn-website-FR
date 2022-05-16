@@ -1,7 +1,18 @@
+/***********************************************************************
+
+All font-size are in rem based to 16px
+
+**********************************************************************/
+
+
+/* RESET */
+
 :root {
-  --font-default: "DM Sans", Arial, Helvetica, sans-serif;
+  --font-default: "DM Sans", sans-serif;
+  --font-error: 'Roboto', sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
+  font-size: 16px;
 }
 
 * {
@@ -10,15 +21,14 @@
   padding: 0;
 }
 
-/* Landing Page */
+/* general init */
 
 body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
+  background-image: #fff;
   font-family: var(--font-default);
-  font-size: 18px;
   max-width: 1300px;
   margin: 0 auto;
 }
@@ -32,9 +42,11 @@ img {
   padding-right: 1rem;
 }
 
+/* HEADER */
 .topnav {
   overflow: hidden;
   margin: 3.5%;
+  width: 100%;
 }
 
 .header-logo {
@@ -50,85 +62,35 @@ img {
   display: block;
   color: #000000;
   text-align: center;
-  padding: 12px 12px;
+  padding: 9px 14px;
   margin: 5px;
   text-decoration: none;
-  font-size: 20px;
-  font-family: Roboto, sans-serif;
+  font-size: 1.125rem;
+  font-family: var(--font-default);
+  /* Font family DM sans*/
+  font-weight: 500;
+
 }
 
-.topnav a:hover {
-  background-color: #ff0000;
+.topnav a:hover,
+.topnav a.active {
+  background-color: #FE142F;
   color: #ffffff;
   border-radius: 15px;
 }
 
 .topnav a.active {
-  background-color: #ff0000;
-  color: #ffffff;
-  border-radius: 15px;
+  text-decoration: underline;
+  /* Change font size */
 }
 
-.topnav a:last-child {
+.topnav .icon {
   display: none;
 }
 
-@media screen and (max-width: 880px) {
-  .topnav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .topnav.responsive {
-    align-items: flex-start;
-  }
-
-  .main-navbar {
-
-    display: flex;
-    flex-direction: column-reverse;
-  }
-
-  .topnav a {
-    display: none;
-  }
-
-  .topnav a.icon {
-    float: right;
-    display: block;
-    color: #ff0000;
-  }
 
 
-
-  .topnav.responsive .icon {
-    display: flex;
-    justify-content: flex-end;
-    color: #000000;
-  }
-
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
-
-
-
-@media screen and (max-width: 540px) {
-  .topnav a {
-    display: none;
-  }
-
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-}
-
+/* MAIN */
 main {
   font-size: 130%;
   font-weight: bolder;
@@ -136,16 +98,17 @@ main {
   padding-top: 0.5vw;
   padding-left: 2vw;
   padding-right: 2vw;
-  margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
+  width: 1239px;
+  margin-left: auto;
+  margin-left: auto;
 
 }
 
 .modal-btn {
   font-size: 145%;
-  background: #fe142f;
+  background: #FF4E60;
   display: flex;
   margin: auto;
   padding: 2em;
@@ -153,6 +116,7 @@ main {
   padding: 0.75rem 2.5rem;
   border-radius: 1rem;
   cursor: pointer;
+  font-family: var(--font-default);
 }
 
 .modal-btn:hover {
@@ -168,21 +132,17 @@ main {
 /* Modal form */
 
 .button {
-  background: #fe142f;
-  margin-top: 0.5em;
-  padding: 1em;
+  background: #FF4E60;
+  margin-top: 0.5rem;
+  padding: 1rem;
   color: #fff;
-  border-radius: 15px;
+  border-radius: 0.5rem;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .button:hover {
   background: #3876ac;
-}
-
-.smFont {
-  font-size: 16px;
 }
 
 .bground {
@@ -194,21 +154,20 @@ main {
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(26, 39, 156, 0.4);
+  background-color: rgb(255, 255, 255);
 }
 
 .content {
-  margin: 5% auto;
+  margin: auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
   border-radius: 10px;
-  overflow: hidden;
   position: relative;
   color: #fff;
-  padding-top: 10px;
+  box-shadow: 0px 7px 4px 1px rgba(0, 0, 0, 0.2);
 }
 
 .modal-body {
@@ -218,7 +177,8 @@ main {
 
 label {
   font-family: var(--font-default);
-  font-size: 17px;
+  font-size: 14px;
+  /* Change font size */
   font-weight: normal;
   display: inline-block;
   margin-bottom: 11px;
@@ -241,9 +201,8 @@ input {
 
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
-  color: #e54858;
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 7px;
   margin-bottom: 7px;
   text-align: right;
@@ -257,20 +216,39 @@ input {
 }
 
 .formData[data-error-visible="true"] .text-control {
-  border: 2px solid #e54858;
+  border: 2px solid #FF4E60;
 }
-.formData[data-error-visible="true"] small {
-  font-size: 0.4em;
+
+.formData[data-error-visible="true"] small,
+#error-form {
+  font-family: var(--font-error);
+  font-size: 10px;
   color: red;
 }
-/* 
-input[data-error]::after {
-  content: attr(data-error);
-  font-size: 0.4em;
-  color: red;
-} */
 
+/**********************************************************************/
+/* reset Type number arrows */
 
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Chrome */
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Opéra*/
+input::-o-inner-spin-button,
+input::-o-outer-spin-button {
+  -o-appearance: none;
+  margin: 0
+}
+
+/*********************************************************************/
 
 .checkbox-label,
 .checkbox2-label {
@@ -375,12 +353,15 @@ input[data-error]::after {
 
 .btn-submit,
 .btn-signup {
-  background: #fe142f;
+  background: #FE142F;
   display: block;
   margin: 0 auto;
   border-radius: 7px;
-  font-size: 1rem;
-  padding: 12px 82px;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 32.55px;
+  text-align: center;
+  padding: 11px 30px;
   color: #fff;
   cursor: pointer;
   border: 0;
@@ -461,14 +442,14 @@ input[data-error]::after {
 }
 
 .hero-section {
-  height: 65vh;
+  height: 657px;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   overflow: hidden;
-  box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
   background-color: #232323;
+  box-shadow: 0px 7px 4px 1px rgba(0, 0, 0, 0.2);
 }
 
 .hero-content {
@@ -497,7 +478,9 @@ input[data-error]::after {
 }
 
 .hero-headline {
-  font-size: 6rem;
+  font-size: 96px;
+  font-weight: 500;
+  line-height: 124.99px;
   font-weight: normal;
   white-space: nowrap;
 }
@@ -507,15 +490,19 @@ input[data-error]::after {
   font-weight: normal;
   margin-top: 57px;
   padding: 0;
+  font-size: 24px;
+  line-height: 31.25px;
 }
 
 .btn-signup {
   outline: none;
   text-transform: capitalize;
-  font-size: 1.3rem;
-  padding: 15px 23px;
+  font-size: 25px;
+  padding: 11px 30px;
   margin: 0;
   margin-top: 59px;
+  font-weight: 500;
+  line-height: 32.55px;
 }
 
 .hero-img {
@@ -531,12 +518,44 @@ input[data-error]::after {
   padding: 0;
 }
 
+/******************Thanks Message***********************/
+#modalSuccess {
+  position: relative;
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 850px;
+}
+
+#modalSuccess p {
+  position: absolute;
+  text-align: center;
+  font-size: 36px;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  font-weight: 400;
+  transform: translate(-50%, -50%);
+}
+
+#modalSuccess button {
+  text-align: center;
+  overflow: scroll;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+/*************************FOOTER*************************/
+
 .copyrights {
-  color: #fe142f;
+  color: #FF4E60;
   padding: 0;
-  font-size: 1rem;
+  font-size: 15px;
   margin: 60px 0 30px;
   font-weight: bolder;
+  line-height: 17.58px;
 }
 
 .hero-section>.btn-signup {
@@ -547,12 +566,93 @@ footer {
   padding-left: 2vw;
   padding-right: 2vw;
   margin: 0 20px;
+  width: 100%;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1300px) {
+
+  header,
+  main,
+  footer,
+  .topnav {
+    width: auto;
+  }
+}
+
+@media all and (max-width: 1000px) {
+  .topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .topnav.responsive {
+    align-items: flex-start;
+  }
+
+  .main-navbar {
+
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .main-navbar-1 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-1 {
+    order: 2;
+  }
+
+  .nav-2 {
+    order: 3;
+  }
+
+  .nav-3 {
+    order: 4;
+  }
+
+  .nav-4 {
+    order: 5;
+  }
+
+  .nav-5 {
+    order: 1;
+  }
+
+  .topnav a {
+    display: none;
+  }
+
+  .topnav a.icon {
+    float: right;
+    display: block;
+    color: #FE142F;
+  }
+
+
+
+  .topnav.responsive .icon {
+    display: flex;
+    justify-content: flex-end;
+    color: #000000;
+  }
+
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 900px) {
   .hero-section {
     display: block;
     box-shadow: unset;
+    border-radius: 0;
+    height: auto;
+    background-color: transparent;
   }
 
   .hero-content {
@@ -570,18 +670,20 @@ footer {
   }
 
   .hero-headline {
-    font-size: 4.5rem;
     white-space: normal;
+    line-height: 4rem;
+    font-size: 3.5rem;
   }
 
   .hero-text {
+    margin-top: 1.5rem;
     width: unset;
     font-size: 1.5rem;
   }
 
   .hero-img img {
-    border-radius: 10px;
-    margin-top: 40px;
+    border-radius: 1rem;
+    width: 100%;
   }
 
   .hero-section>.btn-signup {
@@ -593,6 +695,64 @@ footer {
   .copyrights {
     margin-top: 50px;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .header-logo {
+    width: 150px;
+  }
+
+  .header-logo img {
+    width: 100%;
+  }
+
+  .topnav {
+    z-index: 2;
+  }
+
+  main {
+    padding: 0;
+    width: 100%;
+  }
+
+  .hero-headline {
+    font-size: 2.5rem;
+    line-height: 3.25rem;
+
+  }
+
+  .hero-text {
+    margin-top: 1.5rem;
+    font-size: 0.813rem;
+    line-height: 1.058rem;
+  }
+
+  .content {
+    border-radius: 10px 10px 0 0;
+  }
+
+  .bground {
+    position: initial;
+    top: auto;
+  }
+
+  .btn-signup,
+  .btn-submit {
+    font-size: 0.875rem;
+    padding: 0.388rem 1.964rem;
+  }
+
+  .copyrights {
+    font-size: 0.625rem;
+    margin-top: auto;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .hero-content {
+    padding: auto;
+    min-width: auto;
   }
 }
 

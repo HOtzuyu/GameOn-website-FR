@@ -8,11 +8,11 @@
 
   <title>Reservation</title>
 
-  <link rel="shortcut icon" href="./images/favicon/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./public/images/favicon/favicon.png" type="image/x-icon">
 
-  <link rel="stylesheet" href="modal.css" />
+  <link rel="stylesheet" type="text/css" href="./public/css/modal.css" />  <!-- add the type of link -->
 
-  <!-- link fontawesome cdn -->
+  <!-- link fontawesome cdn // update cdn fontawesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -20,33 +20,31 @@
   <!-- import google font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;400;700&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto&display=swap"
     rel="stylesheet">
 
 </head>
 
 <body>
-  <div class="topnav" id="myTopnav">
-    <div class="header-logo">
-      <img alt="logo" src="./images/logo/Logo.png" width="auto" height="auto" />
-    </div>
-    <div class="main-navbar">
+  <header class="topnav" id="myTopnav">
+    <section class="header-logo">
+      <img alt="logo" src="./public/images/logo/Logo.png" width="auto" height="auto" />
+    </section>
+    <section class="main-navbar">
       <span class="main-navbar-1">
-        <a href="#" class="active"><span>Accueil</span></a>
-        <a href="#"><span>Détails de l'évènement</span></a>
-        <a href="#"><span>À propos</span></a>
-        <a href="#"><span>Contact</span></a>
-        <a href="#"><span>Évènements passés</span></a>
-      </span>      
-      <a href="javascript:void(0);" class="icon" onclick="editNav()">
-        <i class="fa fa-bars"></i>
-      </a>
-    </div>
-  </div>
-  </div>
+        <!-- change the navigation for match with the model -->
+        <a href="#" class="active nav-1"><span>Détails de l'évènement</span></a> 
+        <a href="#" class="nav-2"><span>À propos</span></a>
+        <a href="#" class="nav-3"><span>Contact</span></a>
+        <a href="#" class="nav-4"><span>Évènements passés</span></a>
+
+        <a href="javascript:void(0);" class="icon nav-5" onclick="editNav()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </section>
+  </header>
   <main>
-    <div class="hero-section">
+    <section class="hero-section">
       <div class="hero-content">
         <h1 class="hero-headline">
           Marathon national<br>
@@ -61,49 +59,54 @@
         </button>
       </div>
       <div class="hero-img">
-        <img src="./images/visuels/bg_img.jpg" alt="img" />
+        <img src="./public/images/visuels/bg_img.jpg" alt="img" />
       </div>
       <button class="btn-signup modal-btn">
         je m'inscris
       </button>
-    </div>
+    </section>
 
-    <div class="bground">
+    <section class="bground">
       <div class="content">
         <span class="close"></span>
         <div class="modal-body">
-          <form name="reserve" action="index.html" method="get" onsubmit="return validate();" id="contactForm">
+          <form name="reserve" action="index.html" method="get" id="contactForm">
             <div class="formData">
               <label>Prénom</label><br>
               <!-- delete all <br> before <small> -->
-              <input class="text-control" type="text" id="first" name="first"/> 
-              <small></small>
+              <input class="text-control" type="text" id="first" name="first" autocomplete="off"
+                placeholder="Votre prènom" />
+              <small></small><!--ADD the small tag for the all error message-->
             </div>
             <div class="formData">
               <label>Nom</label><br>
               <!-- delete all <br> before <small> -->
-              <input class="text-control" type="text" id="last" name="last" />
-              <small></small>
+              <input class="text-control" type="text" id="last" name="last" autocomplete="off"
+                placeholder="Votre nom" />
+              <small></small><!--ADD the small tag for the all error message-->
             </div>
             <div class="formData">
               <label>E-mail</label><br>
               <!-- delete all <br> before <small> -->
-              <input class="text-control" type="email" id="email" name="email" />
-              <small id="email_small"></small>
+              <input class="text-control" type="email" id="email" name="email" autocomplete="off"
+                placeholder="Votre adresse e-mail" />
+              <small></small><!--ADD the small tag for the all error message-->
             </div>
             <div class="formData">
               <label>Date de naissance</label><br>
               <!-- delete all <br> before <small> -->
-              <input class="text-control" type="date" id="birthdate" name="birthdate" />
-              <small></small>
+              <input class="text-control" type="date" id="birthdate" name="birthdate" autocomplete="off" />
+              <small></small><!--ADD the small tag for the all error message-->
             </div>
             <div class="formData">
               <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-              <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
-              <small></small>
+              <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99"
+                autocomplete="off" placeholder="Nombre de tournois participé">
+              <small></small><!--ADD the small tag for the all error message-->
             </div>
             <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
             <div class="formData">
+
               <input class="checkbox-input" type="radio" id="location1" name="location" value="New York" />
               <label class="checkbox-label" for="location1">
                 <span class="checkbox-icon"></span>
@@ -128,14 +131,17 @@
               <label class="checkbox-label" for="location6">
                 <span class="checkbox-icon"></span>
                 Portland</label>
+
+              <small id="error-location"></small><!--ADD the small tag for the all error message-->
             </div>
 
             <div class="formData">
               <input class="checkbox-input" type="checkbox" id="checkbox1" checked />
-              <label class="checkbox2-label" for="checkbox1" required>
+              <label class="checkbox2-label" for="checkbox1">
                 <span class="checkbox-icon"></span>
                 J'ai lu et accepte les conditions d'utilisation.
               </label>
+              <small id="error-check"></small><!--ADD the small tag for the all error message-->
               <br>
               <input class="checkbox-input" type="checkbox" id="checkbox2" />
               <label class="checkbox2-label" for="checkbox2">
@@ -144,18 +150,26 @@
               </label>
               <br>
             </div>
+
             <input class="btn-submit" type="submit" class="button" value="C'est parti" />
+            <small id="error-form"></small><!--ADD the small tag for the all error message-->
           </form>
+          <!-- Create the thanks message modal -->
+          <div id="modalSuccess">
+            <p id="modalSuccess_message">Merci pour<br>votre inscription</p>
+            <button class="btn-signup modal-btn" type="button" id="modalSuccess_btn">Fermer</button>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   </main>
   <footer>
     <p class="copyrights">
       Copyright 2014 - 2022, GameOn Inc.
     </p>
   </footer>
-  <script src="modal.js"></script>
+  <!-- <script src="modal.js"></script> -->
+  <script src="./public/js/modal.js"></script>
 </body>
 
 </html>
