@@ -51,8 +51,10 @@ let Check = {
 /*********************************************************************************/
 // || launch modal event ||
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
 // || close modal form with X ||
 closer.addEventListener('click', closeModal);
+
 // || check all event with regex (first, last, mail, birthdate, qty of tornament) ||
 contactForm.first.addEventListener('input', function () {
   testError(this, listRegex[0], listError[0]); // Each testError return isValid value
@@ -62,6 +64,7 @@ contactForm.first.addEventListener('input', function () {
   isValid = false; // re-initialize isValid value
   return Check.first; // return the new value of Check.key
 });
+
 contactForm.last.addEventListener('input', function () {
   testError(this, listRegex[0], listError[1]);
   if (isValid) {
@@ -70,6 +73,7 @@ contactForm.last.addEventListener('input', function () {
   isValid = false;
   return Check.last;
 });
+
 contactForm.email.addEventListener('input', function () {
   testError(this, listRegex[1], listError[2]);
   if (isValid) {
@@ -78,6 +82,7 @@ contactForm.email.addEventListener('input', function () {
   isValid = false;
   return Check.mail;
 });
+
 contactForm.birthdate.addEventListener('input', function () {
   testError(this, listRegex[2], listError[3]);
   validDate(this);
@@ -129,13 +134,21 @@ function editNav() {
 // || launch modal form ||
 function launchModal() {
   modalbg.style.display = "flex";
+  modalSuccess.style.display = "none";
+  contactForm.style.display = "block";
   document.querySelector(".hero-section").style.display = "none"; // hide hero-section
   document.querySelector('footer').style.display="none";
 }
 // || set close modal form ||
 function closeModal() {
   modalbg.style.display = "none";
-  document.querySelector(".hero-section").style.display = "grid"; // reveal hero-section
+   // reveal hero-section // !! depending what the size of the display
+  if (window.matchMedia("(max-width: 900px)").matches) {
+    document.querySelector(".hero-section").style.display = "block"; 
+  } else {
+    document.querySelector(".hero-section").style.display = "grid";
+  }
+  
   document.querySelector('footer').style.display="block";
 }
 // || testError with regex (first, last, mail, birthdate, qty of tornament) ||
@@ -186,10 +199,8 @@ function checkboxChecker(btn) {
     document.querySelector('#error-check').innerHTML = "";
     document.querySelector('#error-check').parentElement.setAttribute('data-error-visible', 'false');
     isValid = true;
-
   } else {
-    document.querySelector('#error-check').innerHTML =
-      listError[7];
+    document.querySelector('#error-check').innerHTML = listError[7];
     document.querySelector('#error-check').parentElement.setAttribute('data-error-visible', 'true');
   }
   return isValid;
@@ -203,8 +214,7 @@ function locationChecker(location) {
       document.querySelector('#error-location').parentElement.setAttribute('data-error-visible', 'false');
       break;
     } else {
-      document.querySelector('#error-location').innerHTML =
-        listError[8];
+      document.querySelector('#error-location').innerHTML = listError[8];
       document.querySelector('#error-location').parentElement.setAttribute('data-error-visible', 'true');
     }
   }
