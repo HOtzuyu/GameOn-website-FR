@@ -32,11 +32,11 @@
     </div>
     <div class="main-navbar">
       <span class="main-navbar-1">
-        <!-- change the navigation for match with the model -->
-        <a href="#" class="active nav-1"><span>Détails de l'évènement</span></a>
-        <a href="#" class="nav-2"><span>À propos</span></a>
-        <a href="#" class="nav-3"><span>Contact</span></a>
-        <a href="#" class="nav-4"><span>Évènements passés</span></a>
+        <!-- change the navigation for match with the model || delete all span -->
+        <a href="#" class="active nav-1">Détails de l'évènement</a>
+        <a href="#" class="nav-2">À propos</a>
+        <a href="#" class="nav-3">Contact</a>
+        <a href="#" class="nav-4">Évènements passés</a>
 
         <a href="javascript:void(0);" class="icon nav-5" onclick="editNav()">
           <i class="fa fa-bars"></i>
@@ -48,12 +48,10 @@
     <section class="hero-section">
       <div class="hero-content">
         <h1 class="hero-headline">
-          Marathon national<br>
-          de jeux vidéos
+          Marathon national<br>de jeux vidéos
         </h1>
         <p class="hero-text">
-          Vous aimez jouer ? Notre prochain évènement gaming est ouvert
-          aux réservations... Places limitées !
+          Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !
         </p>
         <button class="btn-signup modal-btn">
           je m'inscris
@@ -76,7 +74,7 @@
               <label>Prénom</label><br>
               <!-- delete all <br> before <small> -->
               <input class="text-control" type="text" id="first" name="first" autocomplete="off"
-                placeholder="Votre prènom" />
+                placeholder="Votre prènom"  required="required" >
               <small></small>
               <!--ADD the small tag for the all error message-->
             </div>
@@ -84,7 +82,7 @@
               <label>Nom</label><br>
               <!-- delete all <br> before <small> -->
               <input class="text-control" type="text" id="last" name="last" autocomplete="off"
-                placeholder="Votre nom" />
+                placeholder="Votre nom"  required="required" >
               <small></small>
               <!--ADD the small tag for the all error message-->
             </div>
@@ -92,21 +90,21 @@
               <label>E-mail</label><br>
               <!-- delete all <br> before <small> -->
               <input class="text-control" type="email" id="email" name="email" autocomplete="off"
-                placeholder="Votre adresse e-mail" />
+                placeholder="Votre adresse e-mail"  required="required" >
               <small></small>
               <!--ADD the small tag for the all error message-->
             </div>
             <div class="formData">
               <label>Date de naissance</label><br>
               <!-- delete all <br> before <small> -->
-              <input class="text-control" type="date" id="birthdate" name="birthdate" autocomplete="off" />
+              <input class="text-control" type="date" id="birthdate" name="birthdate" autocomplete="off"  required="required" >
               <small></small>
               <!--ADD the small tag for the all error message-->
             </div>
             <div class="formData">
               <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
               <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99"
-                autocomplete="off" placeholder="Nombre de tournois participé">
+                autocomplete="off" placeholder="Nombre de tournois participé"  required="required">
               <small></small>
               <!--ADD the small tag for the all error message-->
             </div>
@@ -143,7 +141,7 @@
 
             <div class="formData">
               <input class="checkbox-input" type="checkbox" id="checkbox1" checked />
-              <label class="checkbox2-label" for="checkbox1">
+              <label class="checkbox2-label" for="checkbox1"  required="required">
                 <span class="checkbox-icon"></span>
                 J'ai lu et accepte les conditions d'utilisation.
               </label>
